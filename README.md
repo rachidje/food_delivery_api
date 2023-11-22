@@ -1,7 +1,8 @@
 # API Food Delivery
 
-![Node.js Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Node.js_logo_2015.svg/2560px-Node.js_logo_2015.svg.png)
-![TypeScript Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png)
+## Technos
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Node.js_logo_2015.svg/2560px-Node.js_logo_2015.svg.png" alt="Node.js Logo" width="100" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png" alt="TypeScript Logo" width="100" />
 
 Implémentation d'une API pour frontend, qui gère les restaurants et les utilisateurs pour une application de livraison de nourritue style UberEats
 
@@ -36,7 +37,6 @@ Permet au vendeur de mettre à jour son profile
 Permet au vendeur de mettre son statut de disponibilité
 
 ## Tâches
-Utilisez cette liste de tâches pour suivre le développement de votre projet. Cochez les cases au fur et à mesure que les tâches sont complétées.
 
 * [X] Mise en place de la structure de base du projet
 * [X] Configuration de l'environnement de développement
