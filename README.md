@@ -1,8 +1,8 @@
 # API Food Delivery
 
-## Technos
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Node.js_logo_2015.svg/2560px-Node.js_logo_2015.svg.png" alt="Node.js Logo" width="100" />
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png" alt="TypeScript Logo" width="100" />
+[![Version](https://img.shields.io/badge/version-v1.0.0-blue.svg)](https://github.com/votre_utilisateur/votre_projet/releases/tag/v1.0.0)
+[![Node.js Version](https://img.shields.io/badge/node.js-%3E%3D%2012.0-brightgreen.svg)](https://nodejs.org/)
+[![TypeScript Version](https://img.shields.io/badge/typescript-%5E4.0.0-blue.svg)](https://www.typescriptlang.org/)
 
 Implémentation d'une API pour frontend, qui gère les restaurants et les utilisateurs pour une application de livraison de nourritue style UberEats
 
