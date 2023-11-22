@@ -1,8 +1,8 @@
 # API Food Delivery
 
 [![Version](https://img.shields.io/badge/version-v1.0.0-blue.svg)](https://github.com/votre_utilisateur/votre_projet/releases/tag/v1.0.0)
-[![Node.js Version](https://img.shields.io/badge/node.js-%3E%3D%2012.0-brightgreen.svg)](https://nodejs.org/)
-[![TypeScript Version](https://img.shields.io/badge/typescript-%5E4.0.0-blue.svg)](https://www.typescriptlang.org/)
+[![Node.js Version](https://img.shields.io/badge/node.js-%3E%3D%2021.2.0-brightgreen.svg)](https://nodejs.org/)
+[![TypeScript Version](https://img.shields.io/badge/typescript-%5E5.3.2-blue.svg)](https://www.typescriptlang.org/)
 
 Implémentation d'une API pour frontend, qui gère les restaurants et les utilisateurs pour une application de livraison de nourritue style UberEats
 
