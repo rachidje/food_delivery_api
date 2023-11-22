@@ -38,17 +38,17 @@ Permet au vendeur de mettre à jour son statut de disponibilité
 
 ## Tâches
 
-*[X] Mise en place de la structure de base du projet
-*[X] Configuration de l'environnement de développement
-*[X] Mise en place du serveur Node.js avec Express
-*[X] Configuration de TypeScript
-*[X] Connexion à la base de données
-*[ ] Implémentation des endpoints de base
-*[ ] Ajout de la gestion des erreurs
-*[ ] Documentation des endpoints dans le README
-*[ ] Ajout de fonctionnalités spécifiques à la livraison de nourriture
-*[ ] Tests unitaires
-*[ ] Tests d'intégration
-*[ ] Mise en production
-*[ ] Documentation complète
-*[ ] Version 1.0.0 - Prêt pour le déploiement
+* [X] Mise en place de la structure de base du projet
+* [X] Configuration de l'environnement de développement
+* [X] Mise en place du serveur Node.js avec Express
+* [X] Configuration de TypeScript
+* [X] Connexion à la base de données
+* [ ] Implémentation des endpoints de base
+* [ ] Ajout de la gestion des erreurs
+* [ ] Documentation des endpoints dans le README
+* [ ] Ajout de fonctionnalités spécifiques à la livraison de nourriture
+* [ ] Tests unitaires
+* [ ] Tests d'intégration
+* [ ] Mise en production
+* [ ] Documentation complète
+* [ ] Version 1.0.0 - Prêt pour le déploiement
