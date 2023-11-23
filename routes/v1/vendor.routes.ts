@@ -1,6 +1,6 @@
 import express from "express";
-import { getVendorProfile, updateVendorProfile, updateVendorService, vendorLogin } from "../controllers";
-import { authenticate } from "../middlewares";
+import { getVendorProfile, updateVendorProfile, updateVendorService, vendorLogin } from "../../controllers/v1";
+import { authenticate } from "../../middlewares";
 const router = express.Router()
 
 router.post('/login', vendorLogin);

@@ -1,7 +1,7 @@
-import express, {Request, Response, NextFunction} from 'express';
-import { CreateVendorInput } from '../dto';
-import { Vendor } from '../models';
-import { generateSalt, hashPassword } from '../utility';
+import {Request, Response, NextFunction} from 'express';
+import { CreateVendorInput } from '../../dto';
+import { Vendor } from '../../models';
+import { generateSalt, hashPassword } from '../../utility';
 
 export const findVendor = async (id: string | undefined, email?: string) => {
     if(email) {

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { EditVendorInput, LoginVendorInput } from "../dto";
+import { EditVendorInput, LoginVendorInput } from "../../dto";
 import { findVendor } from "./admin.controller";
-import { generateSignature, isValidatedPassword } from "../utility";
+import { generateSignature, isValidatedPassword } from "../../utility";
 
 export const vendorLogin = async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = <LoginVendorInput>req.body;
