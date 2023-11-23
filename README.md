@@ -18,6 +18,20 @@ npm install
 ### 1. `POST /api/v1/admin/vendor`
 Crée un nouveau vendeur.
 
+Exemple de body
+```
+{
+    "name": "Toto Ratatouille",
+    "ownerName": "Jane Doe",
+    "foodType": ["Pizza", "Pates"],
+    "pincode": "123",
+    "address": "25 rue de la paix",
+    "phone": "01 23 45 67 89",
+    "email": "toto@gmail.com",
+    "password": "qwerty"
+}
+```
+
 ### 2. `GET /api/v1/admin/vendor`
 Récupère la liste de tous les vendeurs.
 
