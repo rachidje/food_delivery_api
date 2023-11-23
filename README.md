@@ -15,25 +15,25 @@ npm install
 ```
 
 ## Endpoints
-### 1. `POST /api/admin/vendor`
+### 1. `POST /api/v1/admin/vendor`
 Crée un nouveau vendeur.
 
-### 2. `GET /api/admin/vendor`
+### 2. `GET /api/v1/admin/vendor`
 Récupère la liste de tous les vendeurs.
 
-### 3. `GET /api/admin/vendor/:id`
+### 3. `GET /api/v1/admin/vendor/:id`
 Récupère les détails d'un vendeur spécifique.
 
-### 4. `POST /api/vendor/login`
+### 4. `POST /api/v1/vendor/login`
 Permet à un vendeur de se connecter
 
-### 5. `GET /api/vendor/profile`
+### 5. `GET /api/v1/vendor/profile`
 Récupère les détails du vendeur connecté
 
-### 6. `PATCH /api/vendor/profile`
+### 6. `PATCH /api/v1/vendor/profile`
 Permet au vendeur connecté de mettre à jour son profile
 
-### 7. `PATCH /api/vendor/service`
+### 7. `PATCH /api/v1/vendor/service`
 Permet au vendeur de mettre à jour son statut de disponibilité
 
 ## Tâches
@@ -43,7 +43,7 @@ Permet au vendeur de mettre à jour son statut de disponibilité
 * [X] Mise en place du serveur Node.js avec Express
 * [X] Configuration de TypeScript
 * [X] Connexion à la base de données
-* [ ] Implémentation des endpoints de base
+* [X] Implémentation des endpoints de base
 * [ ] Ajout de la gestion des erreurs
 * [ ] Documentation des endpoints dans le README
 * [ ] Ajout de fonctionnalités spécifiques à la livraison de nourriture
