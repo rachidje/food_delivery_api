@@ -1,5 +1,6 @@
 import express from 'express'
 import mongoose from 'mongoose';
+import path from 'path';
 import { MONGO_URI } from './config/db';
 import { api } from './routes/api.routes';
 
@@ -7,6 +8,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use('/images', express.static(path.join(__dirname, 'images')))
 
 app.use('/api', api)
 
