@@ -22,7 +22,7 @@ export const createVendor = async (req: Request, res: Response, next: NextFuncti
     const hashedPassword = await hashPassword(body.password, salt)
 
     const newVendor = new Vendor({
-        ...body, salt: salt, password: hashedPassword, rating: 0, serviceAvailable: false, coverImages: []
+        ...body, salt: salt, password: hashedPassword, rating: 0, serviceAvailable: false, coverImages: [], foods: []
     })
     await newVendor.save();
     return res.json(newVendor);

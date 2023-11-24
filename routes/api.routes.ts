@@ -1,5 +1,5 @@
 import express from "express";
-import { v1Route } from "./v1/intex";
+import { v1Route } from "./v1";
 const router = express.Router()
 
 router.use('/v1', v1Route);
