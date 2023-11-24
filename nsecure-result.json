@@ -1,5 +1,5 @@
 {
-  "id": "oXpi3L",
+  "id": "TfuxFF",
   "rootDependencyName": "food_delivery_backend",
   "scannerVersion": "3.8.0",
   "vulnerabilityStrategy": "npm",
@@ -22995,8 +22995,8 @@
           "flags": [
             "hasDependencies",
             "hasIndirectDependencies",
-            "isOutdated",
             "hasExternalCapacity",
+            "isOutdated",
             "hasManyPublishers"
           ],
           "description": "A light-weight module that brings window.fetch to node.js",
@@ -28894,8 +28894,8 @@
           "existOnRemoteRegistry": true,
           "flags": [
             "hasDependencies",
-            "isOutdated",
             "hasWarnings",
+            "isOutdated",
             "hasManyPublishers",
             "hasDuplicate"
           ],
@@ -96324,7 +96324,7 @@
             "hasMissingOrUnusedDependency"
           ],
           "description": "",
-          "size": 1171120,
+          "size": 4264725,
           "author": {},
           "engines": {},
           "repository": {},
@@ -96355,6 +96355,7 @@
               "dto/index.ts",
               "images/2023-11-24T11:47:57.350Z_kyle-mackie-Xedxbjx7MFg-unsplash.jpg",
               "images/2023-11-24T11:47:57.358Z_paras-kapoor-j55Th_IlJBc-unsplash.jpg",
+              "images/2023-11-24T15:05:18.194Z_79.jpg",
               "index.ts",
               "middlewares/CommonAuth.ts",
               "middlewares/index.ts",
@@ -96362,6 +96363,7 @@
               "models/Food.ts",
               "models/Vendor.ts",
               "models/index.ts",
+              "nsecure-result.json",
               "package-lock.json",
               "package.json",
               "routes/api.routes.ts",
