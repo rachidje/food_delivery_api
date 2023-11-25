@@ -6,6 +6,6 @@ const router = express.Router()
 
 router.use('/admin', AdminRoute)
 router.use('/restaurant', RestaurantRoute)
-router.use('/shopping', ShoppingRoute)
+router.use(ShoppingRoute)
 
 export {router as v1Route }

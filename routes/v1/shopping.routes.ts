@@ -1,9 +1,9 @@
 import express from 'express'
-import { getFoodAvailable, getFoodsIn30min, getRestaurantById, getTopRestaurants, searchFoods } from '../../controllers/v1'
+import { getFoodsIn30min, getRestaurantById, getRestaurantsAvailable, getTopRestaurants, searchFoods } from '../../controllers/v1'
 const router = express.Router()
 
 /** --------------------------Food Availability ------------------------ */
-router.get('/:postalcode', getFoodAvailable)
+router.get('/:postalcode', getRestaurantsAvailable)
 
 /** --------------------------Top Restaurants - ------------------------ */
 router.get('/top-restaurants/:postalcode/:quantity', getTopRestaurants)
