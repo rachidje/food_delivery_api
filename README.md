@@ -15,7 +15,7 @@ npm install
 ```
 
 ## Endpoints
-### 1. `POST /api/v1/admin/vendor`
+### 1. `POST /api/v1/admin/restaurant`
 Crée un nouveau vendeur.
 
 Exemple de body
@@ -24,7 +24,7 @@ Exemple de body
     "name": "Toto Ratatouille",
     "ownerName": "Jane Doe",
     "foodTypes": ["Pizza", "Pates"],
-    "pincode": "123",
+    "postalcode": "123",
     "address": "25 rue de la paix",
     "phone": "01 23 45 67 89",
     "email": "toto@gmail.com",
@@ -32,13 +32,13 @@ Exemple de body
 }
 ```
 
-### 2. `GET /api/v1/admin/vendor`
+### 2. `GET /api/v1/admin/restaurant`
 Récupère la liste de tous les vendeurs.
 
-### 3. `GET /api/v1/admin/vendor/:id`
+### 3. `GET /api/v1/admin/restaurant/:id`
 Récupère les détails d'un vendeur spécifique.
 
-### 4. `POST /api/v1/vendor/login`
+### 4. `POST /api/v1/restaurant/login`
 Permet à un vendeur de se connecter
 
 Exemple de body:
@@ -49,10 +49,10 @@ Exemple de body:
 }
 ```
 
-### 5. `GET /api/v1/vendor/profile`
+### 5. `GET /api/v1/restaurant/profile`
 Récupère les détails du vendeur connecté
 
-### 6. `PATCH /api/v1/vendor/profile`
+### 6. `PATCH /api/v1/restaurant/profile`
 Permet au vendeur connecté de mettre à jour son profile
 
 Exemple de body:
@@ -65,7 +65,7 @@ Exemple de body:
 }
 ```
 
-### 7. `PATCH /api/v1/vendor/service`
+### 7. `PATCH /api/v1/restaurant/service`
 Permet au vendeur de mettre à jour son statut de disponibilité
 
 ## Tâches

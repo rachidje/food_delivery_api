@@ -1,12 +1,11 @@
-export * from './admin.routes';
-export * from './vendor.routes';
-
 import express from "express";
 import { AdminRoute } from './admin.routes';
-import { VenderRoute } from './vendor.routes';
+import { RestaurantRoute } from './restaurant.routes';
+import { ShoppingRoute } from "./shopping.routes";
 const router = express.Router()
 
 router.use('/admin', AdminRoute)
-router.use('/vendor', VenderRoute)
+router.use('/restaurant', RestaurantRoute)
+router.use('/shopping', ShoppingRoute)
 
 export {router as v1Route }

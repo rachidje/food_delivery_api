@@ -1,20 +1,16 @@
-import express from 'express'
-import mongoose from 'mongoose';
-import path from 'path';
-import { MONGO_URI } from './config/db';
-import { api } from './routes/api.routes';
+import express from "express";
+import App from './services/ExpressApp';
+import dbConnection from './services/Database';
 
-const app = express();
+const startServer = async () => {
+    const app = express()
+    await dbConnection()
+    await App(app)
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.use('/images', express.static(path.join(__dirname, 'images')))
+    app.listen(8000, () =>{
+        console.clear()
+        console.log("✅ Server connection established")
+    })
+}
 
-app.use('/api', api)
-
-mongoose.connect(MONGO_URI).then(() => console.log("✅ Mongodb connection established")).catch(err => console.log(err))
-
-app.listen(8000, () =>{
-    console.clear()
-    console.log("✅ Server connection established")
-})
+startServer()

@@ -1,10 +1,10 @@
 import mongoose, {Schema, Document, Model} from "mongoose";
 
-interface VendorDoc extends Document {
+interface RestaurantDoc extends Document {
     name: string;
     ownerName: string;
     foodTypes: [string];
-    pincode: string;
+    postalcode: string;
     address: string;
     phone: string;
     email: string;
@@ -16,11 +16,11 @@ interface VendorDoc extends Document {
     foods: any;
 }
 
-const VendorSchema = new Schema<VendorDoc>({
+const RestaurantSchema = new Schema<RestaurantDoc>({
     name: {type: String, required: true},
     ownerName: {type: String, required: true},
     foodTypes: {type: [String]},
-    pincode: {type: String, required: true},
+    postalcode: {type: String, required: true},
     address: {type: String},
     phone: {type: String, required: true},
     email: {type: String, required: true},
@@ -46,6 +46,6 @@ const VendorSchema = new Schema<VendorDoc>({
     timestamps: true
 })
 
-const Vendor = mongoose.model<VendorDoc>('vendor', VendorSchema);
+const Restaurant = mongoose.model<RestaurantDoc>('restaurant', RestaurantSchema);
 
-export { Vendor }
+export { Restaurant }

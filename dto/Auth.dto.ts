@@ -1,3 +1,3 @@
-import { VendorPayload } from "./Vendor.dto";
+import { RestaurantPayload } from "./Restaurant.dto";
 
-export type AuthPayload = VendorPayload //| AdminPayload | UserPayload
+export type AuthPayload = RestaurantPayload //| AdminPayload | UserPayload

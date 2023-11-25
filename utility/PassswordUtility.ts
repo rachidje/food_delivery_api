@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { VendorPayload } from '../dto';
+import { RestaurantPayload } from '../dto';
 import { APP_SECRET } from '../config';
 import { Request } from 'express';
 import { AuthPayload } from '../dto/Auth.dto';
@@ -17,7 +17,7 @@ export const isValidatedPassword = async (enteredPassword: string, savedPassword
     return await hashPassword(enteredPassword, salt) === savedPassword;
 }
 
-export const generateSignature = (payload: VendorPayload) => {
+export const generateSignature = (payload: RestaurantPayload) => {
     return jwt.sign(payload, APP_SECRET, {expiresIn: '1d'})
 }
 

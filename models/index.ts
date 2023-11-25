@@ -1,2 +1,2 @@
-export * from './Vendor';
+export * from './Restaurant';
 export * from './Food';

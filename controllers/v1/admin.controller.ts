@@ -1,44 +1,44 @@
 import {Request, Response, NextFunction} from 'express';
-import { CreateVendorInput } from '../../dto';
-import { Vendor } from '../../models';
+import { CreateRestaurantInput } from '../../dto';
+import { Restaurant } from '../../models';
 import { generateSalt, hashPassword } from '../../utility';
 
-export const findVendor = async (id: string | undefined, email?: string) => {
+export const findRestaurant = async (id: string | undefined, email?: string) => {
     if(email) {
-        return Vendor.findOne({email: email}).exec()
+        return Restaurant.findOne({email: email}).exec()
     }
-    return Vendor.findById(id).exec();
+    return Restaurant.findById(id).exec();
 }
 
-export const createVendor = async (req: Request, res: Response, next: NextFunction) => {
-    const body = <CreateVendorInput>req.body
+export const createRestaurant = async (req: Request, res: Response, next: NextFunction) => {
+    const body = <CreateRestaurantInput>req.body
 
-    const existingVendor = await findVendor('', body.email)
-    if(existingVendor) {
-        return res.json({message: `A vendor is existing with the same email '${body.email}'`})
+    const existingRestaurant = await findRestaurant('', body.email)
+    if(existingRestaurant) {
+        return res.json({message: `A restaurant is existing with the same email '${body.email}'`})
     }
 
     const salt = await generateSalt();
     const hashedPassword = await hashPassword(body.password, salt)
 
-    const newVendor = new Vendor({
+    const newRestaurant = new Restaurant({
         ...body, salt: salt, password: hashedPassword, rating: 0, serviceAvailable: false, coverImages: [], foods: []
     })
-    await newVendor.save();
-    return res.json(newVendor);
+    await newRestaurant.save();
+    return res.json(newRestaurant);
 }
 
-export const getVendors = async (req: Request, res: Response, next: NextFunction) => {
-    const vendors = await Vendor.find({})
-    if(vendors) return res.json(vendors)
+export const getRestaurants = async (req: Request, res: Response, next: NextFunction) => {
+    const restaurants = await Restaurant.find({})
+    if(restaurants) return res.json(restaurants)
 
-    return res.json({message: "No vendor available"})
+    return res.json({message: "No restaurant available"})
 }
 
-export const getVendorById = async (req: Request, res: Response, next: NextFunction) => {
+export const getRestaurantById = async (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id;
-    const vendor = await findVendor(id)
-    if(vendor) return res.json(vendor)
+    const restaurant = await findRestaurant(id)
+    if(restaurant) return res.json(restaurant)
 
-    return res.json({message: "No vendor available with this ID"})
+    return res.json({message: "No restaurant available with this ID"})
 }
