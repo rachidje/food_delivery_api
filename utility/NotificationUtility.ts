@@ -18,7 +18,7 @@ export const onRequestOTP = async (otp: number, toPhoneNumber: string) => {
     const response = await client.messages.create({
         body: `Your OTP is ${otp}`,
         from: PHONE_NUMBER,
-        to: toPhoneNumber
+        to: `+33${toPhoneNumber}`
     })
 
     return response;

@@ -16,7 +16,7 @@ interface CustomerDoc extends Document {
 }
 
 const CustomerSchema = new Schema<CustomerDoc>({
-    email: {type: String, required: true},
+    email: {type: String, required: true, unique: true},
     password: {type: String, required: true},
     salt: {type: String, required: true},
     firstname: {type: String},

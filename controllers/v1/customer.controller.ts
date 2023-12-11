@@ -18,6 +18,12 @@ export const customerSignup = async (req: Request, res: Response, next: NextFunc
     const hashedPassword = await hashPassword(password, salt)
     const {otp, otp_expiry} = generateOTP();
 
+    const existingCustomer = await Customer.findOne({ email })
+
+    if(existingCustomer) {
+        return res.status(409).json({message: "An user exist with this email"})
+    }
+
     const newCustomer = await Customer.create({
         email, password: hashedPassword, phone, salt, otp, otp_expiry, firstname: '', lastname: '', address: '', verified: false, lat: 0, long: 0
     })
