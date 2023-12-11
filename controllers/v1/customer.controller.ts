@@ -1,5 +1,5 @@
 import { plainToClass } from 'class-transformer';
-import express, {Request, Response, NextFunction} from 'express';
+import {Request, Response, NextFunction} from 'express';
 import { CreateCustomerInputs } from '../../dto/Customer.dto';
 import { validate } from 'class-validator';
 import { generateOTP, generateSalt, generateSignature, hashPassword, onRequestOTP } from '../../utility';
@@ -51,7 +51,27 @@ export const customerLogin = async (req: Request, res: Response, next: NextFunct
 }
 
 export const customerVerify = async (req: Request, res: Response, next: NextFunction) => {
+    const {otp} = req.body;
+    const customer = req.user;
 
+    if(customer) {
+        const profile = await Customer.findById(customer._id);
+        if(profile) {
+            if(profile.otp === parseInt(otp) && profile.otp_expiry >= new Date()) {
+                profile.verified = true;
+                const updatedCustomer = await profile.save();
+                const signature = generateSignature({
+                    _id: updatedCustomer._id,
+                    email: updatedCustomer.email,
+                    verified: updatedCustomer.verified
+                })
+                return res.status(201).json({ signature, verified: updatedCustomer.verified, email: updatedCustomer.email})
+            }
+            return res.status(400).json({message: "Error with the OTP provided or the OTP has expired"})
+        }
+    }
+
+    return res.status(400).json({message: "Error with OTP validation"})
 }
 
 export const requestOtp = async (req: Request, res: Response, next: NextFunction) => {
