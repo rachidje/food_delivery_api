@@ -1,8 +1,8 @@
 import { plainToClass } from 'class-transformer';
 import {Request, Response, NextFunction} from 'express';
-import { CreateCustomerInputs } from '../../dto/Customer.dto';
+import { CreateCustomerInputs, UserLoginInputs } from '../../dto/Customer.dto';
 import { validate } from 'class-validator';
-import { generateOTP, generateSalt, generateSignature, hashPassword, onRequestOTP } from '../../utility';
+import { generateOTP, generateSalt, generateSignature, hashPassword, isValidatedPassword, onRequestOTP } from '../../utility';
 import { Customer } from '../../models';
 
 export const customerSignup = async (req: Request, res: Response, next: NextFunction) => {
@@ -47,7 +47,31 @@ export const customerSignup = async (req: Request, res: Response, next: NextFunc
 }
 
 export const customerLogin = async (req: Request, res: Response, next: NextFunction) => {
+    const loginInputs = plainToClass(UserLoginInputs, req.body);
+    const loginErrors = await validate(loginInputs, {validationError: {target: false}});
+    
+    if(loginErrors.length) {
+        return res.status(400).json(loginErrors);
+    }
 
+    const {email, password} = loginInputs;
+    const customer = await Customer.findOne({ email })
+
+    if(customer) {
+        const validation = await isValidatedPassword(password, customer.password, customer.salt);
+        
+        if (validation) {
+            const signature = generateSignature({
+                _id: customer._id,
+                email: customer.email,
+                verified: customer.verified
+            })
+
+            return res.status(201).json({signature, verified: customer.verified, email: customer.email})
+        }
+
+    }
+    return res.status(404).json({message: "Error with the email and/or password provided."})
 }
 
 export const customerVerify = async (req: Request, res: Response, next: NextFunction) => {

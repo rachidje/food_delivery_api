@@ -16,3 +16,11 @@ export interface CustomerPayload {
     email: string;
     verified: boolean
 }
+
+export class UserLoginInputs {
+    @IsEmail()
+    email: string;
+
+    @Length(6, 15)
+    password: string;
+}
