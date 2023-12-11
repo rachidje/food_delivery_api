@@ -16,7 +16,7 @@ npm install
 
 ## Endpoints
 ### 1. `POST /api/v1/admin/restaurant`
-Crée un nouveau vendeur.
+Ajouter un nouveau restaurant.
 
 Exemple de body
 ```
@@ -33,13 +33,13 @@ Exemple de body
 ```
 
 ### 2. `GET /api/v1/admin/restaurant`
-Récupère la liste de tous les vendeurs.
+Récupère la liste de tous les restaurants.
 
 ### 3. `GET /api/v1/admin/restaurant/:id`
-Récupère les détails d'un vendeur spécifique.
+Récupère les détails d'un restaurant spécifique.
 
 ### 4. `POST /api/v1/restaurant/login`
-Permet à un vendeur de se connecter
+Permet à un restaurant de se connecter
 
 Exemple de body:
 ```
@@ -50,10 +50,10 @@ Exemple de body:
 ```
 
 ### 5. `GET /api/v1/restaurant/profile`
-Récupère les détails du vendeur connecté
+Récupère les détails du restaurant connecté
 
 ### 6. `PATCH /api/v1/restaurant/profile`
-Permet au vendeur connecté de mettre à jour son profile
+Permet au restaurant connecté de mettre à jour son profile
 
 Exemple de body:
 ```
@@ -66,7 +66,7 @@ Exemple de body:
 ```
 
 ### 7. `PATCH /api/v1/restaurant/service`
-Permet au vendeur de mettre à jour son statut de disponibilité
+Permet au restaurant de mettre à jour son statut de disponibilité
 
 ## Tâches
 
