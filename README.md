@@ -75,21 +75,17 @@ Permet au restaurant de mettre à jour son statut de disponibilité
 Permet au restaurant d'ajouter un nouveau plat a sa carte de livraison
 ```
 form-data
-key | value
---- | ---
-name | Steack Hache
---- | ---
-description | Un steack hache avec de la sauce poivre
---- | ---
-categorie | viande
---- | ---
-foodType | NoVeg
---- | ---
-price | 35
---- | ---
-readyTime | 20
---- | ---
-images | filetype
+
+|key            | value                                     |
+|-------------- | ------------------------------------------|
+|name           | Steack Hache                              |
+|description    | Un steack hache avec de la sauce poivre   |
+|categorie      | viande                                    |
+|foodType       | NoVeg                                     |
+|pric           | 35                                        |
+|readyTim       | 20                                        |
+|images         | filestype                                 |
+
 ```
 
 ### 9. `GET /api/v1/restaurant/foods`
