@@ -10,6 +10,7 @@ const startServer = async () => {
     app.listen(8000, () =>{
         console.clear()
         console.log("✅ Server connection established")
+        console.log("✅ Mongodb connection established")
     })
 }
 
