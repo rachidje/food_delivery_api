@@ -15,19 +15,21 @@ npm install
 ```
 
 ## Endpoints
+
+## Administrateur
 ### 1. `POST /api/v1/admin/restaurant`
 Ajouter un nouveau restaurant.
 
 Exemple de body
 ```
 {
-    "name": "Toto Ratatouille",
-    "ownerName": "Jane Doe",
-    "foodTypes": ["Pizza", "Pates"],
-    "postalcode": "123",
-    "address": "25 rue de la paix",
-    "phone": "01 23 45 67 89",
-    "email": "toto@gmail.com",
+    "name": "La Brasserie Parisienne",
+    "ownerName": "Pierre Martin",
+    "foodTypes": ["French", "Brasserie"],
+    "postalcode": "75002",
+    "address": "30 Rue Montorgueil",
+    "phone": "01 55 66 77 88",
+    "email": "brasserieparisienne@gmail.com",
     "password": "qwerty"
 }
 ```
@@ -38,13 +40,14 @@ Récupère la liste de tous les restaurants.
 ### 3. `GET /api/v1/admin/restaurant/:id`
 Récupère les détails d'un restaurant spécifique.
 
+## Restaurant
 ### 4. `POST /api/v1/restaurant/login`
 Permet à un restaurant de se connecter
 
 Exemple de body:
 ```
 {
-    "email":"john@gmail.com",
+    "email":"brasserieparisienne@gmail.com",
     "password": "qwerty"
 }
 ```
@@ -58,15 +61,41 @@ Permet au restaurant connecté de mettre à jour son profile
 Exemple de body:
 ```
 {
-    "name" : "Big Ratatouille", 
-    "address": "36 rue de la paix", 
-    "phone": "09 87 65 43 21", 
-    "foodTypes": ["Tacos", "Burgers"]
+    "name": "La Brasserie Parisienne",
+    "foodTypes": ["French", "Brasserie"],
+    "address": "30 Rue Montorgueil",
+    "phone": "01 55 66 99 88"
 }
 ```
 
 ### 7. `PATCH /api/v1/restaurant/service`
 Permet au restaurant de mettre à jour son statut de disponibilité
+
+### 8. `POST /api/v1/restaurant/food`
+Permet au restaurant d'ajouter un nouveau plat a sa carte de livraison
+```
+form-data
+key | value
+--- | ---
+name | Steack Hache
+--- | ---
+description | Un steack hache avec de la sauce poivre
+--- | ---
+categorie | viande
+--- | ---
+foodType | NoVeg
+--- | ---
+price | 35
+--- | ---
+readyTime | 20
+--- | ---
+images | filetype
+```
+
+### 9. `GET /api/v1/restaurant/foods`
+Récupère la liste des plats proposés par le restaurant à la livraison
+
+## Shopping
 
 ## Tâches
 
