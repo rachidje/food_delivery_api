@@ -14,6 +14,20 @@ Assurez-vous d'avoir Node.js installé. Clonez ce dépôt, puis installez les d�
 npm install
 ```
 
+Il y a un dossier `config` situé à la racine du projet et contenant les 3 fichiers suivants:
+```
+db.ts : 
+export const MONGO_URI = 'mongodb://<username>:<password>@localhost:27017/food_delivery'
+
+index.ts: 
+export const APP_SECRET = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+twilio.ts:
+export const ACCOUNT_SID = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+export const AUTH_TOKEN = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+export const PHONE_NUMBER = "+XXXXXXXXXXXX"
+```
+
 ## Endpoints
 
 ## Administrateur
