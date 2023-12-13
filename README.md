@@ -14,7 +14,7 @@ Assurez-vous d'avoir Node.js installé. Clonez ce dépôt, puis installez les d�
 npm install
 ```
 
-Il y a un dossier `config` situé à la racine du projet et contenant les 3 fichiers suivants:
+Il y a un dossier `config` situé dans le dossier `src` et contenant les 3 fichiers suivants:
 ```
 db.ts : 
 export const MONGO_URI = 'mongodb://<username>:<password>@localhost:27017/food_delivery'
