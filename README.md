@@ -14,18 +14,13 @@ Assurez-vous d'avoir Node.js installé. Clonez ce dépôt, puis installez les d�
 npm install
 ```
 
-Il y a un dossier `config` situé dans le dossier `src` et contenant les 3 fichiers suivants:
+Déploiement avec Heroku, créer les `Configs Vars` suivant:
 ```
-db.ts : 
-export const MONGO_URI = 'mongodb://<username>:<password>@localhost:27017/food_delivery'
-
-index.ts: 
-export const APP_SECRET = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-
-twilio.ts:
-export const ACCOUNT_SID = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-export const AUTH_TOKEN = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-export const PHONE_NUMBER = "+XXXXXXXXXXXX"
+heroku config:set MONGO_URI="mongodb+srv://<username>:<password>@<cluster_name>.pr4ht.mongodb.net/?retryWrites=true&w=majority"
+heroku config:set APP_SECRET=*****************
+heroku config:set ACCOUNT_SID=****************
+heroku config:set AUTH_TOKEN=***************
+heroku config:set PHONE_NUMBER=+************
 ```
 
 ## Endpoints
