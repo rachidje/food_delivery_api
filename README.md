@@ -8,7 +8,7 @@ Implémentation d'une API pour frontend, qui gère les restaurants et les utilis
 
 ## Installation
 
-Assurez-vous d'avoir Node.js installé. Clonez ce dépôt, puis installez les dépendances en utilisant:
+Assurez-vous d'avoir Node.js installé. Clonez ce dépôt, puis installez les dépendances en utilisant la commande suivante (le dossier `dist` sera généré à l'issue de la commande):
 
 ```bash
 npm install

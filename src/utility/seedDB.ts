@@ -73,7 +73,6 @@ const restaurants = [
 ];
 
 import { MongoClient } from 'mongodb';
-import { MONGO_URI } from '../config/db';
 import bcrypt from 'bcrypt';
 
 
@@ -86,7 +85,7 @@ export const hashPassword = async (password: string, salt: string) : Promise<str
 }
 
 async function insertRestaurantsIntoDatabase(restaurants: any[]) {
-    const client = new MongoClient(MONGO_URI);
+    const client = new MongoClient(process.env.MONGO_URI);
 
     try {
         await client.connect();

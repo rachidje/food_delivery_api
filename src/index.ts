@@ -7,7 +7,7 @@ const startServer = async () => {
     await dbConnection()
     await App(app)
 
-    app.listen(8000, () =>{
+    app.listen(process.env.PORT, () =>{
         console.clear()
         console.log("✅ Server connection established")
         console.log("✅ Mongodb connection established")
