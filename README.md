@@ -50,7 +50,7 @@ Récupère la liste de tous les restaurants.
 Récupère les détails d'un restaurant spécifique.
 
 ## Restaurant
-### 4. `POST /api/v1/restaurant/login`
+### 1. `POST /api/v1/restaurant/login`
 Permet à un restaurant de se connecter
 
 Exemple de body:
@@ -61,10 +61,10 @@ Exemple de body:
 }
 ```
 
-### 5. `GET /api/v1/restaurant/profile`
+### 2. `GET /api/v1/restaurant/profile`
 Récupère les détails du restaurant connecté
 
-### 6. `PATCH /api/v1/restaurant/profile`
+### 3. `PATCH /api/v1/restaurant/profile`
 Permet au restaurant connecté de mettre à jour son profile
 
 Exemple de body:
@@ -77,10 +77,10 @@ Exemple de body:
 }
 ```
 
-### 7. `PATCH /api/v1/restaurant/service`
+### 4. `PATCH /api/v1/restaurant/service`
 Permet au restaurant de mettre à jour son statut de disponibilité
 
-### 8. `POST /api/v1/restaurant/food`
+### 5. `POST /api/v1/restaurant/food`
 Permet au restaurant d'ajouter un nouveau plat a sa carte de livraison
 ```
 form-data
@@ -97,10 +97,22 @@ form-data
 
 ```
 
-### 9. `GET /api/v1/restaurant/foods`
+### 6. `GET /api/v1/restaurant/foods`
 Récupère la liste des plats proposés par le restaurant à la livraison
 
 ## Shopping
+### 1 `GET /api/v1/:postalcode`
+Récupère la liste des plats disponible à la livraison sur le code postal défini
+
+### 2 `GET /api/v1/top-restaurants/:postalcode/:limit`
+Récupère les n tops restaurants dans le code postal défini
+
+### 3 `GET /api/v1/foods-in-30-min/:postalcode`
+Récupère les plats livrés en moins de 30 minutes dans le code postal défini
+
+### 4 `GET /api/v1/search/:postalcode`
+Fait une recherche des plats disponible dans le code postal défini
+
 
 ## Tâches
 

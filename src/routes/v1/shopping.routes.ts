@@ -15,6 +15,6 @@ router.get('/foods-in-30-min/:postalcode', getFoodsIn30min)
 router.get('/search/:postalcode', searchFoods);
 
 /** --------------------------Find Restautant By ID -------------------- */
-router.get('/restaurant/:id', getRestaurantById)
+router.get('/show/:id', getRestaurantById)
 
 export { router as ShoppingRoute }
