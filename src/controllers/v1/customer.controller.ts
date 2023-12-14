@@ -170,7 +170,9 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
         let cartItems = Array();
         let netAmount = 0.0;
         // calculer le montant de la commande
+        console.log(cart)
         const foods = await Food.find().where('_id').in(cart.map(item => item._id)).exec()
+        
         foods.map(food => {
             cart.map(( {_id, unit} ) => {
                 if(food._id == _id) {
