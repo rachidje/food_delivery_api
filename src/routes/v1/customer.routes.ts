@@ -1,5 +1,5 @@
 import express from "express";
-import { customerLogin, customerSignup, customerVerify, editCustomerProfile, getCustomerProfile, requestOtp } from "../../controllers/v1";
+import { createOrder, customerLogin, customerSignup, customerVerify, editCustomerProfile, getCustomerProfile, getOrderById, getOrders, requestOtp } from "../../controllers/v1";
 import { authenticate } from "../../middlewares";
 const router = express.Router()
 
@@ -23,6 +23,10 @@ router.get('/profile', getCustomerProfile)
 
 router.patch('/profile', editCustomerProfile)
 
+/** Order */
+router.post('/create-order', createOrder);
+router.get('/orders', getOrders);
+router.get('/order/:id', getOrderById);
 
 
 export {router as CustomerRoute}

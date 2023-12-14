@@ -3,7 +3,9 @@ import {Request, Response, NextFunction} from 'express';
 import { CreateCustomerInputs, EditCustomerProfileInputs, UserLoginInputs } from '../../dto/Customer.dto';
 import { validate } from 'class-validator';
 import { generateOTP, generateSalt, generateSignature, hashPassword, isValidatedPassword, onRequestOTP } from '../../utility';
-import { Customer } from '../../models';
+import { Customer, Food } from '../../models';
+import { OrderInputs } from '../../dto/Order.dto';
+import { Order } from '../../models/Order';
 
 export const customerSignup = async (req: Request, res: Response, next: NextFunction) => {
     const customerInputs = plainToClass(CreateCustomerInputs, req.body);
@@ -151,4 +153,61 @@ export const editCustomerProfile = async (req: Request, res: Response, next: Nex
             return res.status(200).json(result);
         }
     }
+}
+
+export const createOrder = async (req: Request, res: Response, next: NextFunction) => {
+    // recuperer le current customer
+    const customer = req.user;
+
+    if(customer) {
+        // creer un order ID
+        const orderId = `${Math.floor(Math.random() * 899999) + 1000}`;
+        const profile = await Customer.findById(customer._id);
+
+        // recuperer les items de la commande [{id: XX, unit: XX}]
+        const cart = <[OrderInputs]> req.body // [{id: XX, unit: XX}]
+
+        let cartItems = Array();
+        let netAmount = 0.0;
+        // calculer le montant de la commande
+        const foods = await Food.find().where('_id').in(cart.map(item => item._id)).exec()
+        foods.map(food => {
+            cart.map(( {_id, unit} ) => {
+                if(food._id == _id) {
+                    netAmount += (food.price * unit);
+                    cartItems.push({food, unit})
+                }
+            })
+        })
+        // creer une commande avec la description des items
+        if(cartItems.length) {
+            const currentOrder = await Order.create({
+                orderID: orderId,
+                items: cartItems,
+                totalAmount: netAmount,
+                orderDate: new Date(),
+                paidThrough: 'COD',
+                paymentResponse: '',
+                orderStatus: 'Waiting'
+            })
+
+            // mettre a jour les commandes passees sur le compte utilisateur
+            if(currentOrder) {
+                profile.orders.push(currentOrder);
+                const profileResponse = await profile.save();
+
+                return res.status(200).json(profileResponse);
+            }
+        }
+    }
+
+    return res.status(400).json({message: "Error with Create Order"})
+}
+
+export const getOrders = async (req: Request, res: Response, next: NextFunction) => {
+
+}
+
+export const getOrderById = async (req: Request, res: Response, next: NextFunction) => {
+
 }
