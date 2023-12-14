@@ -165,7 +165,7 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
         const profile = await Customer.findById(customer._id);
 
         // recuperer les items de la commande [{id: XX, unit: XX}]
-        const cart = <[OrderInputs]> req.body // [{id: XX, unit: XX}]
+        const cart = <[OrderInputs]>req.body // [{id: XX, unit: XX}]
 
         let cartItems = Array();
         let netAmount = 0.0;
