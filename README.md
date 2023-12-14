@@ -25,7 +25,7 @@ heroku config:set PHONE_NUMBER=+************
 
 ## Endpoints
 
-## Administrateur
+## Administrateur routes
 ### 1. `POST /api/v1/admin/restaurant`
 Ajouter un nouveau restaurant.
 
@@ -49,7 +49,7 @@ Récupère la liste de tous les restaurants.
 ### 3. `GET /api/v1/admin/restaurant/:id`
 Récupère les détails d'un restaurant spécifique.
 
-## Restaurant
+## Restaurant routes
 ### 1. `POST /api/v1/restaurant/login`
 Permet à un restaurant de se connecter
 
@@ -100,7 +100,7 @@ form-data
 ### 6. `GET /api/v1/restaurant/foods`
 Récupère la liste des plats proposés par le restaurant à la livraison
 
-## Shopping
+## Shopping routes
 ### 1 `GET /api/v1/:postalcode`
 Récupère la liste des plats disponible à la livraison sur le code postal défini
 
@@ -113,6 +113,62 @@ Récupère les plats livrés en moins de 30 minutes dans le code postal défini
 ### 4 `GET /api/v1/search/:postalcode`
 Fait une recherche des plats disponible dans le code postal défini
 
+### 5 `GET /api/v1/show/:restaurant_id`
+Affiche les informations propre à un restaurant en particulier
+
+## Customer routes
+### 1 `GET /api/v1/customer/signup`
+Créer un nouveau compte utilisateur
+
+Exemple de body:
+```
+{
+    "email" : "rachid.jeffali@gmail.com",
+    "password": "qwerty",
+    "phone": "07XXXXXXXX"
+}
+```
+A l'issue de l'inscription, un OTP est envoyé sur le mobile du nouvel utilisateur
+
+### 2 `PATCH /api/v1/customer/verify`
+Vérifie le nouvel utilisateur inscrit
+
+Exemple de body:
+```
+{
+    "otp" : "591474"
+}
+```
+
+### 3 `POST /api/v1/customer/login`
+Connecte l'utilisateur à son espace
+
+Exemple de body
+```
+{
+    "email": "rachid.jeffali@gmail.com",
+    "password": "qwerty"
+}
+```
+
+### 4 `GET /api/v1/customer/otp`
+Fait une demande d'OTP
+
+### 5 `GET /api/v1/customer/profile`
+Affiche le profil utilisateur
+
+### 6 `PATCH /api/v1/customer/signup`
+Met a jour le profil utilisateur
+
+Exemple de body:
+```
+{
+    "firstname": "Rachid",
+    "lastname": "Jeffali",
+    "address": "25 rue de la paix"
+}
+```
+
 
 ## Tâches
 
@@ -123,10 +179,9 @@ Fait une recherche des plats disponible dans le code postal défini
 * [X] Connexion à la base de données
 * [X] Implémentation des endpoints de base
 * [ ] Ajout de la gestion des erreurs
-* [ ] Documentation des endpoints dans le README
+* [X] Documentation des endpoints dans le README
 * [ ] Ajout de fonctionnalités spécifiques à la livraison de nourriture
 * [ ] Tests unitaires
 * [ ] Tests d'intégration
-* [ ] Mise en production
+* [X] Mise en production
 * [ ] Documentation complète
-* [ ] Version 1.0.0 - Prêt pour le déploiement
