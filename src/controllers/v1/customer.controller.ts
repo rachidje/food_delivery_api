@@ -163,7 +163,6 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
         // creer un order ID
         const orderId = `${Math.floor(Math.random() * 899999) + 1000}`;
         const profile = await Customer.findById(customer._id);
-        console.log(req.body)
 
         // recuperer les items de la commande [{id: XX, unit: XX}]
         const cart = <[OrderInputs]>req.body // [{id: XX, unit: XX}]
@@ -171,7 +170,6 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
         let cartItems = Array();
         let netAmount = 0.0;
         // calculer le montant de la commande
-        console.log(cart)
         const foods = await Food.find().where('_id').in(cart.map(item => item._id)).exec()
         
         foods.map(food => {
