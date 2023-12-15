@@ -169,6 +169,18 @@ Exemple de body:
 }
 ```
 
+## Order routes
+### 1 `POST /api/v1/customer/create-order`
+Creer une commande
+
+Exemple de body:
+```
+[
+    { "_id": "657b1efbd187464e0367f597", "unit": 2},
+    { "_id": "657b8ac481658943a5d6aecd", "unit": 1}
+]
+```
+
 
 ## Tâches
 
