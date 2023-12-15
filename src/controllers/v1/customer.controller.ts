@@ -163,6 +163,7 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
         // creer un order ID
         const orderId = `${Math.floor(Math.random() * 899999) + 1000}`;
         const profile = await Customer.findById(customer._id);
+        console.log(req.body)
 
         // recuperer les items de la commande [{id: XX, unit: XX}]
         const cart = <[OrderInputs]>req.body // [{id: XX, unit: XX}]
