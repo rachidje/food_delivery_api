@@ -255,7 +255,7 @@ export const addToCart = async (req: Request, res: Response, next: NextFunction)
                 cartItems.push({ food, unit })
             }
 
-            if (cartItems.length) {
+            if (cartItems) {
                 profile.cart = cartItems as any;
                 const cartResult = await profile.save();
                 return res.status(200).json(cartResult.cart);
