@@ -170,7 +170,30 @@ export const processOrder  = async (req: Request, res: Response, next: NextFunct
 }
 
 export const getOffers = async (req: Request, res: Response, next: NextFunction) => {
-    
+    const user = req.user;
+
+    if(user){
+        let currentOffers = Array();
+        const offers = await Offer.find().populate('restaurants')
+        if(offers){
+            offers.map(offer => {
+                if(offer.restaurants) {
+                    offer.restaurants.map(restau => {
+                        if(restau._id.toString() === user._id) {
+                            currentOffers.push(offer)
+                        }
+                    })
+                }
+
+                if(offer.offerType === "GENERIC") {
+                    currentOffers.push(offer)
+                }
+            })
+        }
+        return res.status(200).json(currentOffers);
+    }
+
+    return res.status(400).json({message: "Offers not available!"})
 }
 
 export const addOffer = async (req: Request, res: Response, next: NextFunction) => {
