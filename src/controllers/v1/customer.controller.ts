@@ -169,12 +169,15 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
 
         let cartItems = Array();
         let netAmount = 0.0;
+        let restaurantId;
+
         // calculer le montant de la commande
         const foods = await Food.find().where('_id').in(cart.map(item => item._id)).exec()
         
         foods.map(food => {
             cart.map(( {_id, unit} ) => {
                 if(food._id == _id) {
+                    restaurantId= food.restaurantId;
                     netAmount += (food.price * unit);
                     cartItems.push({food, unit})
                 }
@@ -184,12 +187,18 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
         if(cartItems.length) {
             const currentOrder = await Order.create({
                 orderID: orderId,
+                restaurantId,
                 items: cartItems,
                 totalAmount: netAmount,
                 orderDate: new Date(),
                 paidThrough: 'COD',
                 paymentResponse: '',
-                orderStatus: 'Waiting'
+                orderStatus: 'Waiting',
+                remarks: '',
+                deliveryId: '',
+                appliedOffers: false,
+                offerId: null,
+                readyTime: 45
             })
 
             // mettre a jour les commandes passees sur le compte utilisateur
