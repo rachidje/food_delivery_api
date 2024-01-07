@@ -3,8 +3,9 @@ import { EditRestaurantInput, LoginRestaurantInput } from "../../dto";
 import { findRestaurant } from "./admin.controller";
 import { generateSignature, isValidatedPassword } from "../../utility";
 import { createFoodInputs } from "../../dto/Food.dto";
-import { Food } from "../../models";
+import { Food, Offer } from "../../models";
 import { Order } from "../../models/Order";
+import { CreateOfferInputs } from "../../dto/Offer.dto";
 
 export const restaurantLogin = async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = <LoginRestaurantInput>req.body;
@@ -166,5 +167,29 @@ export const processOrder  = async (req: Request, res: Response, next: NextFunct
     }
 
     return res.status(400).json({message: "Unable to process Order"})
+}
+
+export const getOffers = async (req: Request, res: Response, next: NextFunction) => {
+    
+}
+
+export const addOffer = async (req: Request, res: Response, next: NextFunction) => {
+    const user = req.user
+
+    if(user) {
+        const body = <CreateOfferInputs>req.body;
+        const restaurant = await findRestaurant(user._id)
+
+        if(restaurant) {
+            const offer = await Offer.create({...body, restaurants : [restaurant]});
+            return res.status(200).json(offer);
+        }
+    }
+
+    return res.status(400).json({message: "Unable to create Offer!"})
+}
+
+export const editOffer = async (req: Request, res: Response, next: NextFunction) => {
+
 }
 

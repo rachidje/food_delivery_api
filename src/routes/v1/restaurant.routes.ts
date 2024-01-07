@@ -1,5 +1,5 @@
 import express, { Request } from "express";
-import { addFood, getFoods, getRestaurantProfile, updateRestaurantCoverImage, updateRestaurantProfile, updateRestaurantService, restaurantLogin, getCurrentOrders, processOrder, getOrderDetails } from "../../controllers/v1";
+import { addFood, getFoods, getRestaurantProfile, updateRestaurantCoverImage, updateRestaurantProfile, updateRestaurantService, restaurantLogin, getCurrentOrders, processOrder, getOrderDetails, getOffers, addOffer, editOffer } from "../../controllers/v1";
 import { authenticate } from "../../middlewares";
 import { imagesMiddleware } from "../../middlewares/uploadImages";
 const router = express.Router()
@@ -19,5 +19,11 @@ router.get('/foods', getFoods)
 router.get('/orders', getCurrentOrders)
 router.put('/order/:id/process', processOrder)
 router.get('/order/:id', getOrderDetails)
+
+/** Offers */
+router.get('/offers', getOffers)
+router.post('/offer', addOffer)
+router.put('/offer/:id', editOffer)
+
 
 export {router as RestaurantRoute }
