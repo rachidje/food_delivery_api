@@ -206,7 +206,13 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
 }
 
 export const getOrders = async (req: Request, res: Response, next: NextFunction) => {
-
+    const customer = req.user;
+    if(customer) {
+        const profile = await Customer.findById(customer._id).populate('orders');
+        if(profile) {
+            return res.status(200).json(profile.orders);
+        }
+    }
 }
 
 export const getOrderById = async (req: Request, res: Response, next: NextFunction) => {
