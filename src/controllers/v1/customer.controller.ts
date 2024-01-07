@@ -203,6 +203,7 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
 
             // mettre a jour les commandes passees sur le compte utilisateur
             if(currentOrder) {
+                profile.cart = [] as any;
                 profile.orders.push(currentOrder);
                 const profileResponse = await profile.save();
 

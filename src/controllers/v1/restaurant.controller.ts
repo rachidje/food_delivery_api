@@ -152,8 +152,8 @@ export const processOrder  = async (req: Request, res: Response, next: NextFunct
     const {status, remarks, time} = req.body; // ACCEPT, REJECT, UNDER-PROCESS, READY
 
     if(orderId) {
-        const order = (await Order.findById(orderId)).populated('food');
-
+        const order = await Order.findById(orderId).populate('food');
+        
         order.orderStatus = status;
         order.remarks = remarks;
         if(time) {
