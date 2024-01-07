@@ -224,3 +224,54 @@ export const getOrderById = async (req: Request, res: Response, next: NextFuncti
         }
     }
 }
+
+
+export const addToCart = async (req: Request, res: Response, next: NextFunction) => {
+    const customer = req.user;
+
+    if(customer) {
+        const profile = await Customer.findById(customer._id).populate('cart.food')
+        let cartItems = Array();
+
+        const { _id, unit } = <OrderInputs>req.body;
+        const food = await Food.findById(_id);
+
+        if(food && profile) {
+            cartItems = profile.cart;
+            if (cartItems.length) {
+                let existedFoodItem = cartItems.filter(item => item.food._id.toString() === _id)
+
+                if(existedFoodItem) {
+                    const index = cartItems.indexOf(existedFoodItem[0])
+                    if(unit > 0){
+                        cartItems[index] = {food, unit}
+                    } else {
+                        cartItems.splice(index, 1)
+                    }
+                } else {
+                    cartItems.push({ food, unit })
+                }
+            } else {
+                cartItems.push({ food, unit })
+            }
+
+            if (cartItems.length) {
+                profile.cart = cartItems as any;
+                const cartResult = await profile.save();
+                return res.status(200).json(cartResult.cart);
+            }
+        }
+    }
+
+    return res.status(400).json({message: "Unable to create Cart!"})
+
+}
+
+export const getCart = async (req: Request, res: Response, next: NextFunction) => {
+
+}
+
+export const deleteCart = async (req: Request, res: Response, next: NextFunction) => {
+
+}
+
