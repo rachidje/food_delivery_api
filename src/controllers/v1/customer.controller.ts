@@ -218,7 +218,7 @@ export const getOrders = async (req: Request, res: Response, next: NextFunction)
 export const getOrderById = async (req: Request, res: Response, next: NextFunction) => {
     const orderId = req.params.id;
     if(orderId) {
-        const order = await Customer.findById(orderId).populate('items.food');
+        const order = await Order.findById(orderId).populate('items.food');
         if(order) {
             return res.status(200).json(order);
         }
