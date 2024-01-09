@@ -1,5 +1,5 @@
 import express, {Request, Response, NextFunction} from 'express';
-import { FoodDoc, Restaurant } from '../../models';
+import { FoodDoc, Offer, Restaurant } from '../../models';
 
 
 export const getRestaurantsAvailable = async (req: Request, res: Response, next: NextFunction) => {
@@ -65,5 +65,16 @@ export const getRestaurantByID = async (req: Request, res: Response, next: NextF
     if(result) return res.status(200).json(result);
 
     return res.status(400).json({message: "Data Not Found"})
+}
+
+export const getAvailableOffers =async (req: Request, res: Response, next: NextFunction) => {
+    const postalcode = req.params.postalcode;
+
+    const offers = await Offer.find({postalcode, isActive: true})
+    if(offers) {
+        return res.status(200).json(offers)
+    }
+
+    return res.status(400).json({ message: "Offers not found" })
 }
 
