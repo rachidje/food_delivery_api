@@ -235,7 +235,6 @@ export const getOrderById = async (req: Request, res: Response, next: NextFuncti
     }
 }
 
-
 export const addToCart = async (req: Request, res: Response, next: NextFunction) => {
     const customer = req.user;
 

@@ -213,6 +213,22 @@ export const addOffer = async (req: Request, res: Response, next: NextFunction) 
 }
 
 export const editOffer = async (req: Request, res: Response, next: NextFunction) => {
+    const user = req.user
+    const offerId = req.params.id;
 
+    if(user) {
+        const body = <CreateOfferInputs>req.body;
+        const currentOffer = await Offer.findById(offerId);
+        
+        if (currentOffer) {
+            const restaurant = await findRestaurant(user._id);
+            if(restaurant) {
+                const offer = await Offer.findByIdAndUpdate(offerId, {$set: body}, {new: true});
+                return res.status(200).json(offer);
+            }
+        }
+    }
+
+    return res.status(400).json({message: "Unable to update Offer!"})
 }
 
