@@ -12,7 +12,6 @@ const startServer = async () => {
         console.clear()
         console.log("✅ Server connection established")
         console.log("✅ Mongodb connection established")
-        console.log(process.env.NODE_ENV)
     })
 }
 

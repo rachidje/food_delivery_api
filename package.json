@@ -7,7 +7,7 @@
     "dev": "NODE_ENV=dev nodemon src/index.ts",
     "start": "node dist/index.js",
     "build": "tsc -p . && npm run copy-assets",
-    "copy-assets": "rm -rf dist/images && mkdir dist/images",
+    "copy-assets": "mkdir -p dist/images",
     "postinstall": "npm run build"
   },
   "engines": {
