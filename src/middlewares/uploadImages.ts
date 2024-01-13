@@ -6,7 +6,7 @@ const uploadImage = multer.diskStorage({
         cb(null, 'images')
     },
     filename: function(req, file, cb) {
-        cb(null, `${uuidv4()}_${file.originalname}`)
+        cb(null, `${new Date()}_${file.originalname}`)
     }
 })
 
