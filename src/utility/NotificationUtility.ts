@@ -1,14 +1,4 @@
-// Send Email
 
-let priv;
-
-if(process.env.NODE_ENV && process.env.NODE_ENV === 'dev'){
-    priv = require('../config')
-}
-
-// Notifications
-
-// OTP
 export const generateOTP = () => {
     const otp = Math.floor(100000 + Math.random() * 900000)
     let otp_expiry = new Date();
@@ -18,10 +8,10 @@ export const generateOTP = () => {
 }
 
 export const onRequestOTP = async (otp: number, toPhoneNumber: string) => {
-    const client = require('twilio')(process.env.ACCOUNT_SID || priv.ACCOUNT_SID, process.env.AUTH_TOKEN || priv.AUTH_TOKEN)
+    const client = require('twilio')(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN)
     const response = await client.messages.create({
         body: `Your OTP is ${otp}`,
-        from: process.env.PHONE_NUMBER || priv.PHONE_NUMBER,
+        from: process.env.PHONE_NUMBER,
         to: `+33${toPhoneNumber}`
     })
 

@@ -3,7 +3,7 @@ import {Request, Response, NextFunction} from 'express';
 import { CreateCustomerInputs, EditCustomerProfileInputs, UserLoginInputs } from '../../dto/Customer.dto';
 import { validate } from 'class-validator';
 import { generateOTP, generateSalt, generateSignature, hashPassword, isValidatedPassword, onRequestOTP } from '../../utility';
-import { Customer, Food } from '../../models';
+import { Customer, Food, Offer } from '../../models';
 import { OrderInputs } from '../../dto/Order.dto';
 import { Order } from '../../models/Order';
 
@@ -233,6 +233,27 @@ export const getOrderById = async (req: Request, res: Response, next: NextFuncti
             return res.status(200).json(order);
         }
     }
+}
+
+export const verifyOffer = async (req: Request, res: Response, next: NextFunction) => {
+    const offerId = req.params.id;
+    const customer = req.user;
+
+    if(customer) {
+        const appliedOffer = await Offer.findById(offerId)
+        
+        if(appliedOffer && appliedOffer.promoType === 'USER') {
+            // only can apply ONCE per USER
+        } else {
+            if(appliedOffer.isActive && appliedOffer.endValidity <= new Date()) {
+                return res.status(200).json({message: "Offer is valid", offer: appliedOffer})
+            }
+        }
+
+        return res.status(400).json({message: "Offer is not valid"})
+    }
+    return res.status(400).json({message: "Something wrong with the offer verification"})
+
 }
 
 export const addToCart = async (req: Request, res: Response, next: NextFunction) => {
