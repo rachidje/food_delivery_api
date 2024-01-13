@@ -1,12 +1,13 @@
 import multer from "multer";
-import { v4 as uuidv4 } from 'uuid';
+import path from 'path'
 
 const uploadImage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, 'images')
+        const pathToImages = path.join(__dirname, '../images')
+        cb(null, pathToImages)
     },
     filename: function(req, file, cb) {
-        cb(null, `${new Date()}_${file.originalname}`)
+        cb(null, `${Date.now()}_${file.originalname}`)
     }
 })
 

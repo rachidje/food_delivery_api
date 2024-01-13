@@ -29,8 +29,10 @@ export const restaurantLogin = async (req: Request, res: Response, next: NextFun
 }
 
 export const getRestaurantProfile = async (req: Request, res: Response, next: NextFunction) => {
+    console.log(req.user)
     if(req.user) {
         const restaurant = await findRestaurant(req.user._id);
+        console.log(restaurant)
         return res.json(restaurant)
     }
     return res.json({message: "Restaurant information not found"})
