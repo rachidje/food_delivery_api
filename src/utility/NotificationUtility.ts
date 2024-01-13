@@ -1,6 +1,6 @@
 // Send Email
 
-import { priv } from "../config";
+import priv from "../config";
 
 
 

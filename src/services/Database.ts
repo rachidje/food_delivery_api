@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { priv } from '../config';
+import priv from '../config';
 
 export default async () => {
     try {

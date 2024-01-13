@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { Request } from 'express';
 import { AuthPayload } from '../dto/Auth.dto';
-import { priv } from '../config';
+import priv from '../config';
 
 export const generateSalt = async () : Promise<string> => {
     return await bcrypt.genSalt()
