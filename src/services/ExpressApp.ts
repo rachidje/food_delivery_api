@@ -2,6 +2,7 @@ import express, { Application } from 'express'
 import path from 'path';
 
 import { api } from '../routes/api.routes';
+import { errorHandler } from '../middlewares';
 
 export default async(app: Application) => {
     app.use(express.json());
@@ -10,6 +11,8 @@ export default async(app: Application) => {
     app.use('/images', express.static(path.join(__dirname, '../images')))
 
     app.use('/api', api)
+
+    app.use(errorHandler)
 
     return app;
 }
