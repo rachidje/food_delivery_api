@@ -1,8 +1,10 @@
 // Send Email
 
-import priv from "../config";
+let priv;
 
-
+if(process.env.NODE_ENV && process.env.NODE_ENV === 'dev'){
+    priv = require('../config')
+}
 
 // Notifications
 

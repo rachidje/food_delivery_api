@@ -2,7 +2,12 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { Request } from 'express';
 import { AuthPayload } from '../dto/Auth.dto';
-import priv from '../config';
+
+let priv;
+
+if(process.env.NODE_ENV && process.env.NODE_ENV === 'dev'){
+    priv = require('../config')
+}
 
 export const generateSalt = async () : Promise<string> => {
     return await bcrypt.genSalt()
