@@ -8,7 +8,6 @@ import { CartItem, OrderInputs } from '../../dto/Order.dto';
 import { Order } from '../../models/Order';
 
 export const customerSignup = async (req: Request, res: Response, next: NextFunction) => {
-    return res.send("OK");
     const customerInputs = plainToClass(CreateCustomerInputs, req.body);
     const inputErrors = await validate(customerInputs, {validationError: {target: true}})
     if(inputErrors.length) {
