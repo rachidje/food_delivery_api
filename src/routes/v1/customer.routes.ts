@@ -1,10 +1,10 @@
 import express from "express";
-import { addToCart, createOrder, customerLogin, customerSignup, customerVerify, deleteCart, editCustomerProfile, getCart, getCustomerProfile, getOrderById, getOrders, requestOtp, verifyOffer } from "../../controllers/v1";
+import { addToCart, createOrder, createPayment, customerLogin, customerSignup, customerVerify, deleteCart, editCustomerProfile, getCart, getCustomerProfile, getOrderById, getOrders, requestOtp, verifyOffer } from "../../controllers/v1";
 import { authenticate } from "../../middlewares";
 const router = express.Router()
 
 /** Signup / Create customer */
-router.get('/signup', customerSignup)
+router.post('/signup', customerSignup)
 
 /** Login */
 router.post('/login', customerLogin)
@@ -29,6 +29,7 @@ router.delete('/cart', deleteCart)
 
 /** Appliquer les offres */
 router.get('/offer/verify/:id', verifyOffer)
+router.post('/create-payment', createPayment)
 
 /** Order */
 router.post('/create-order', createOrder);

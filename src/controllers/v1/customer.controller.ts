@@ -3,11 +3,12 @@ import {Request, Response, NextFunction} from 'express';
 import { CreateCustomerInputs, EditCustomerProfileInputs, UserLoginInputs } from '../../dto/Customer.dto';
 import { validate } from 'class-validator';
 import { generateOTP, generateSalt, generateSignature, hashPassword, isValidatedPassword, onRequestOTP } from '../../utility';
-import { Customer, Food, Offer } from '../../models';
-import { OrderInputs } from '../../dto/Order.dto';
+import { Customer, Food, Offer, Transaction } from '../../models';
+import { CartItem, OrderInputs } from '../../dto/Order.dto';
 import { Order } from '../../models/Order';
 
 export const customerSignup = async (req: Request, res: Response, next: NextFunction) => {
+    return res.send("OK");
     const customerInputs = plainToClass(CreateCustomerInputs, req.body);
     const inputErrors = await validate(customerInputs, {validationError: {target: true}})
     if(inputErrors.length) {
@@ -164,18 +165,17 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
         const orderId = `${Math.floor(Math.random() * 899999) + 1000}`;
         const profile = await Customer.findById(customer._id);
 
-        // recuperer les items de la commande [{id: XX, unit: XX}]
-        const cart = <[OrderInputs]>req.body // [{id: XX, unit: XX}]
+        const {transactionId, amount, items} = <OrderInputs>req.body
 
         let cartItems = Array();
         let netAmount = 0.0;
         let restaurantId;
 
         // calculer le montant de la commande
-        const foods = await Food.find().where('_id').in(cart.map(item => item._id)).exec()
+        const foods = await Food.find().where('_id').in(items.map(item => item._id)).exec()
         
         foods.map(food => {
-            cart.map(( {_id, unit} ) => {
+            items.map(( {_id, unit} ) => {
                 if(food._id == _id) {
                     restaurantId= food.restaurantId;
                     netAmount += (food.price * unit);
@@ -263,7 +263,7 @@ export const addToCart = async (req: Request, res: Response, next: NextFunction)
         const profile = await Customer.findById(customer._id).populate('cart.food')
         let cartItems = Array();
 
-        const { _id, unit } = <OrderInputs>req.body;
+        const { _id, unit } = <CartItem>req.body;
         const food = await Food.findById(_id);
 
         if(food && profile) {
@@ -322,3 +322,28 @@ export const deleteCart = async (req: Request, res: Response, next: NextFunction
     return res.status(400).json({message: "Cart is already empty"})
 }
 
+export const createPayment = async (req: Request, res: Response, next: NextFunction) => {
+    const customer = req.user;
+
+    const {amount, paymentMode, offerId} = req.body;
+
+    let payableAmount = Number(amount)
+
+    if(offerId) { // On verifie que le client a appliquer une offre
+        const appliedOffer = await Offer.findById(offerId);
+
+        if(appliedOffer && appliedOffer.isActive && amount >= appliedOffer.minValue) {
+            payableAmount = (payableAmount - appliedOffer.offerAmount)
+        }
+    }
+
+    // Perform Payment gateway Charge API Call
+
+    // Create record on transaction
+    const transaction = await Transaction.create({
+        customer: customer._id, orderAmount: payableAmount, offer: offerId, paymentMode
+    })
+
+    // Return transaction ID
+    return res.status(201).json(transaction)
+}
